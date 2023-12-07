@@ -1,0 +1,59 @@
+version: '3.3'
+
+services:
+  webserver1:
+    image: php:7.4-apache
+    container_name: webserver1
+    hostname: webserver1
+    ports:
+      - "7001:80"
+      - "7021:22"
+    depends_on:
+      - mariadb-server
+    networks:
+      - mynetwork
+
+  webserver2:
+    image: php:7.4-apache
+    container_name: webserver2
+    hostname: webserver2
+    ports:
+      - "7003:80"
+      - "7022:22"
+    depends_on:
+      - mariadb-server
+    networks:
+      - mynetwork
+
+  mariadb-server:
+    image: mariadb:latest
+    container_name: mariadb-webserver
+    hostname: mariadb-server
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: mydatabase
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "7023:22"
+    networks:
+      - mynetwork
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    hostname: phpmyadmin
+    environment:
+      PMA_HOST: mariadb-server
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "7070:80"
+      - "7020:22"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:

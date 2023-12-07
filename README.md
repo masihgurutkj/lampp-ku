@@ -42,13 +42,14 @@ Lampp (PHP7.4-Apache, Mariadb dam PHPMyAdmin) Versi PC
    - Port: 7002 -> 80 [ mengarah ke port 80 ]
    - Port: 7022 -> 22 [ mengarah ke port 22 - ssh ]
 
-1. Rename di Lokal Server menjadi docker-compose.yaml
-2. Jalankan perintah: chmod +x menu-server.sh && ./menu-server.sh
-3. Jalankan di browser
+1. git clone https://github.com/otnamrehus/lampp-ku.git ## Download docker-compose
+2. Rename di Lokal Server menjadi docker-compose.yaml
+3. Jalankan perintah: chmod +x menu-server.sh && ./menu-server.sh
+4. Jalankan di browser
    - http://ipaddress:7001   ##  Web Server 1 (Via Browser)
    - http://ipaddress:7002   ##  Web Server 2 (Via Browser)
    - http://ipaddress:7070   ##  PHPMyAdmin (Via Browser)
-4. Jalankan di Terminal
+5. Jalankan di Terminal
    Webserver 1
      - sudo ssh -p 7021 root@ip_address   ### Remote Server [SSH]  (Via Terminal)
      - sudo sftp -P 7021 root@ip_address  ### Remote Server [SFTP]  (Via Terminal)
